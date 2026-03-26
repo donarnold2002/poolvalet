@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - NODE_ENV=production
+    volumes:
+      - ./server/uploads:/app/server/uploads
+      - ./server/poolvalet.db:/app/server/poolvalet.db
+    restart: unless-stopped
